@@ -206,7 +206,8 @@ def predictor(image_input):
     output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
                                 content_img, style_img, input_img, num_steps=50)
 
-    return output
+    output.save('out_'+image_input)
+    return 'out_'+image_input
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt

@@ -52,18 +52,16 @@ def handle_message(event):
     
     if event.message.type == "image":
         message_content = line_bot_api.get_message_content(event.message.id)
-        file_name = event.message.id + "image.jpg"
+        file_name = event.message.id + "_image.jpg"
         with open(file_name, 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
 
         fd.close()
         
-        output = predict.predictor(file_name)
-        output.save(os.path.join(app.root_path, "static/output/", file_name))
-        
-        img_url = os.path.join(request.url_root, flask.url_for('callback',filename="static/output/"+file_name))
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(img_url)
+        output = predict.predictor(file_name)    
+        flask.send_file(output, mimetype='image/jpg')
+        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format("xxx")
 
 
     line_bot_api.reply_message(
