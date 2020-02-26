@@ -205,9 +205,9 @@ def predictor(image_input):
         return input_img
 
     output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
-                                content_img, style_img, input_img, num_steps=50)
+                                content_img, style_img, input_img, num_steps=1)
     
-    torchvision.utils.save_image(output, 'static/out_'+image_input)
+    torchvision.utils.save_image(output, './static/out_'+image_input)
     return 'static/out_'+image_input
 
 if __name__ == "__main__":

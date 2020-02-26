@@ -1,7 +1,7 @@
 import predict
 import os
 
-from flask import Flask, request, abort
+from flask import Flask, request, abort, url_for
 import flask
 
 from linebot import (
@@ -22,9 +22,13 @@ channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-@app.route("/", methods=['GET'])
-def home():
-    return "Hello, world."
+#@app.route("/")
+#def home():
+#    return "Hello, world."
+
+@app.route("/")
+def index(file_name):
+    return '<img src=' + url_for('static',filename=file_name) + '>' 
 
 @app.route("/callback", methods=['POST'])
 def callback():
