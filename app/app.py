@@ -62,7 +62,7 @@ def handle_message(event):
         output = predict.predictor(file_name)
         output.save(os.path.join(app.root_path, "static/output/", file_name))
         
-        img_url = os.path.join(request.url_root, flask.url_for('static',filename="output/"+file_name))
+        img_url = os.path.join(request.url_root, flask.url_for('callback',filename="static/output/"+file_name))
         text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(img_url)
 
 
