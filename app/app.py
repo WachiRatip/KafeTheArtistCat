@@ -2,6 +2,7 @@ import predict
 import os
 
 from flask import Flask, request, abort
+import flask
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -58,7 +59,7 @@ def handle_message(event):
 
         fd.close()
 
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว'
+        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(flask.url_for('callback',filename=filepath))
 
 
     line_bot_api.reply_message(
