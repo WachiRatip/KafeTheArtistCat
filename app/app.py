@@ -65,7 +65,7 @@ def handle_message(event):
         fd.close()
         
         output = predict.predictor(file_name)    
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(os.path.join(request.url_root, output))
+        text = u'สไตล์แวนโกะเลย เมี้ยววววว {}'.format(os.path.join(request.url_root, output))
 
     line_bot_api.reply_message(
             event.reply_token,
