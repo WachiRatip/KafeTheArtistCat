@@ -3,10 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [
         'build', 
-        '--build-arg',
-        'ARG_LINE_CHANNEL_ACCESS_TOKEN=${_LINE_CHANNEL_ACCESS_TOKEN}',
-        '--build-arg',
-        'ARG_LINE_CHANNEL_SECRET=${_LINE_CHANNEL_SECRET}',
         '-t',
         'gcr.io/$PROJECT_ID/artistcat', 
         '.',
@@ -27,7 +23,9 @@ steps:
         '--platform', 
         'managed', 
         '--quiet',
-        '--allow-unauthenticated'
+        '--allow-unauthenticated',
+        '--set-env-vars',
+        'LINE_CHANNEL_ACCESS_TOKEN=${_LINE_CHANNEL_ACCESS_TOKEN}, LINE_CHANNEL_SECRET=${_LINE_CHANNEL_SECRET}'
         ]
 
 images:
