@@ -65,12 +65,21 @@ def handle_message(event):
         fd.close()
         
         output = predict.predictor(file_name)    
-        text = u'สไตล์แวนโกะเลย เมี้ยววววว {}'.format(os.path.join(request.url_root, output))
+        #text = u'สไตล์แวนโกะเลย เมี้ยววววว {}'.format(os.path.join(request.url_root, output))
+        url_img = os.path.join(request.url_root, output)
 
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=text))
+    if not output:
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=text))
 
+    else:
+        line_bot_api.reply_message(
+                event.reply_token,
+                ImageSendMessage(
+                        original_content_url=url_img,
+                        preview_image_url=url_img
+                ))
 
 
 if __name__ == "__main__":
