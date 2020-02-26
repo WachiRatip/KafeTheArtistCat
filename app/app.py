@@ -18,8 +18,8 @@ app = Flask(__name__)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 
-line_bot_api = LineBotApi(str(channel_access_token))
-handler = WebhookHandler(str(channel_secret))
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
 
 @app.route("/")
 def home():
