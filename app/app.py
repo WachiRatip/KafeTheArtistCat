@@ -61,14 +61,14 @@ def handle_message(event):
         fd.close()
         
         output = predict.predictor(file_name)    
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว'
+        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(os.path.join(request.url_root, output))
 
+    if not output:
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=text))
 
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=text))
-
-    if output:
+    else:
         img_url = os.path.join(request.url_root, output)
         line_bot_api.reply_message(
             event.reply_token,
