@@ -6,6 +6,7 @@ import torchvision.utils
 import copy
 import torch.nn.functional as F
 import torch.optim as optim
+import os
 
 class Normalization(nn.Module):
     def __init__(self, mean, std):
@@ -207,8 +208,9 @@ def predictor(image_input):
     output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
                                 content_img, style_img, input_img, num_steps=1)
     
-    torchvision.utils.save_image(output, './static/out_'+image_input)
-    return 'static/out_'+image_input
+    output_name = os.path.join('style', 'out_'+image_input)
+    torchvision.utils.save_image(output, './'+output_name)
+    return output_name
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt

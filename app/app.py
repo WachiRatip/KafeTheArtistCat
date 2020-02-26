@@ -22,13 +22,13 @@ channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-#@app.route("/")
-#def home():
-#    return "Hello, world."
-
 @app.route("/")
-def index(file_name):
-    return '<img src=' + url_for('static',filename=file_name) + '>' 
+def home():
+    return "Hello, world."
+
+@app.route("/style/<filename>")
+def send_file(filename):
+    return flask.send_file(os.path.join('./style',filename), mimetype='image/jpg')
 
 @app.route("/callback", methods=['POST'])
 def callback():
