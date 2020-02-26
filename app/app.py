@@ -59,6 +59,9 @@ def handle_message(event):
         fd.close()
 
         text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว'
+        # save predict img
+        # use url_for to get url
+        # than reply img to client
 
 
     line_bot_api.reply_message(

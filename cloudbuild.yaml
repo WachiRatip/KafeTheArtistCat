@@ -4,9 +4,9 @@ steps:
   args: [
         'build', 
         '--build-arg',
-        'LINE_CHANNEL_ACCESS_TOKEN=${_LINE_CHANNEL_ACCESS_TOKEN}',
+        'ARG_LINE_CHANNEL_ACCESS_TOKEN=${_LINE_CHANNEL_ACCESS_TOKEN}',
         '--build-arg',
-        'LINE_CHANNEL_SECRET=${_LINE_CHANNEL_SECRET}',
+        'ARG_LINE_CHANNEL_SECRET=${_LINE_CHANNEL_SECRET}',
         '-t',
         'gcr.io/$PROJECT_ID/artistcat', 
         '.',
