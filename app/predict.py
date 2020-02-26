@@ -75,7 +75,7 @@ def predictor(image_input):
         transforms.ToTensor()])  # transform it into a torch tensor
 
     style_img = loader(Image.open("./style/vangosh.jpg")).unsqueeze(0).to(device, torch.float)
-    content_img = loader(image_input).unsqueeze(0).to(device, torch.float)
+    content_img = loader(Image.open(image_input)).unsqueeze(0).to(device, torch.float)
 
     def image_loader(image_name):
         image = Image.open(image_name)
@@ -224,7 +224,7 @@ if __name__ == "__main__":
 
     image_input = Image.open("./test.jpg")
     plt.figure()
-    imshow(predict(image_input), title='Output Image')
+    imshow(predictor(image_input), title='Output Image')
 
     # sphinx_gallery_thumbnail_number = 4
     plt.ioff()
