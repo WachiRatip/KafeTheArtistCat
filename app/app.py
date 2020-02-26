@@ -58,8 +58,8 @@ def handle_message(event):
                 fd.write(chunk)
 
         fd.close()
-
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(flask.url_for('callback',filename=filepath))
+        img_url = os.path.join(request.url_root, flask.url_for('callback',filename=filepath))
+        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(img_url)
 
 
     line_bot_api.reply_message(
