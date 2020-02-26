@@ -26,7 +26,7 @@ handler = WebhookHandler(channel_secret)
 def home():
     return "Hello, world."
 
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods=['GET','POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
@@ -69,7 +69,7 @@ def handle_message(event):
             TextSendMessage(text=text))
 
     if output:
-        img_url = os.path.join(request.url_root,output)
+        img_url = os.path.join(request.url_root, output)
         line_bot_api.reply_message(
             event.reply_token,
             ImageSendMessage(originalContentUrl=img_url, previewImageUrl=img_url))
