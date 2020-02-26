@@ -60,8 +60,7 @@ def handle_message(event):
         fd.close()
         
         output = predict.predictor(file_name)    
-        flask.send_file(output, mimetype='image/jpg')
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format("xxx")
+        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(os.path.join(request.url_root,output))
 
 
     line_bot_api.reply_message(
