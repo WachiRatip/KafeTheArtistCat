@@ -45,28 +45,9 @@ def callback():
 
 @handler.add(MessageEvent)
 def handle_message(event):
-    text = u"นี้คือ {}".format(event.message.type)
-    if event.message.type == "text":
-        text = 'แมวววว'
-    
-    if event.message.type == "image":
-        message_content = line_bot_api.get_message_content(event.message.id)
-        filepath = event.message.id + "image.jpg"
-        with open(filepath, 'wb') as fd:
-            for chunk in message_content.iter_content():
-                fd.write(chunk)
-
-        fd.close()
-
-        text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว'
-        # save predict img
-        # use url_for to get url
-        # than reply img to client
-
-
     line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=text))
+            TextSendMessage(text=event.message.id))
 
 
 if __name__ == "__main__":
