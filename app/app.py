@@ -47,7 +47,7 @@ def callback():
 def handle_message(event):
     text = u"นี้คือ {}".format(event.message.type)
     if event.message.type == "text":
-        text = u'แมวววว'
+        text = 'แมวววว'
     
     if event.message.type == "image":
         message_content = line_bot_api.get_message_content(event.message.id)
