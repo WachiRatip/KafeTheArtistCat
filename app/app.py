@@ -45,7 +45,7 @@ def callback():
 
 @handler.add(MessageEvent)
 def handle_message(event):
-    text = ''
+    text = u"นี้คือ {}".format(event.message.type)
     if event.message.type == "text":
         text = u'แมวววว'
     
