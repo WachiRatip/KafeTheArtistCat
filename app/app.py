@@ -63,16 +63,10 @@ def handle_message(event):
         output = predict.predictor(file_name)    
         text = u'ขอเวลาวาดรูปสักนาทีน่า เมี้ยววว {}'.format(os.path.join(request.url_root, output))
 
-    if not output:
-        line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=text))
-
-    else:
-        img_url = os.path.join(request.url_root, output)
-        line_bot_api.reply_message(
+    line_bot_api.reply_message(
             event.reply_token,
-            ImageSendMessage(originalContentUrl=img_url, previewImageUrl=img_url))
+            TextSendMessage(text=text))
+
 
 
 if __name__ == "__main__":
