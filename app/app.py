@@ -54,8 +54,11 @@ def handle_message(event):
     output = None
     if event.message.type == "text":
         text = u'แมวววว'
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=text)) 
     
-    if event.message.type == "image":
+    elif event.message.type == "image":
         message_content = line_bot_api.get_message_content(event.message.id)
         file_name = event.message.id + "_image.jpg"
         with open(file_name, 'wb') as fd:
@@ -67,19 +70,21 @@ def handle_message(event):
         output = predict.predictor(file_name)    
         #text = u'สไตล์แวนโกะเลย เมี้ยววววว {}'.format(os.path.join(request.url_root, output))
         url_img = os.path.join(request.url_root, output)
+        if url_img[:5] != 'https': 
+            url_img = 'https'+url_img[4:]
 
-    if not output:
         line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=text))
+                ImageSendMessage(
+                        type="image",
+                        original_content_url=url_img,
+                        preview_image_url=url_img
+                ))
 
     else:
         line_bot_api.reply_message(
                 event.reply_token,
-                ImageSendMessage(
-                        original_content_url=url_img,
-                        preview_image_url=url_img
-                ))
+                TextSendMessage(text=text))        
 
 
 if __name__ == "__main__":
